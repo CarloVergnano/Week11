@@ -6,3 +6,4 @@ from dataclasses import dataclass
 class Connessione:
     o1 : Object
     o2 : Object
+    peso : int

@@ -31,7 +31,7 @@ class Model:
                 DAO.readEdges(u, v)"""
 
         #MODO 2 (usare una query sola per estrarre le connessioni)
-        connessioni = DAO.readConnessioni()
+        connessioni = DAO.readConnessioni(self._objects_dict)
         #leggo le connessioni dal DAO
         for c in connessioni:
             self._grafo.add_edge(c.o1, c.o2)
