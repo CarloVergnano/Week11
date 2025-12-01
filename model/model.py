@@ -34,5 +34,22 @@ class Model:
         connessioni = DAO.readConnessioni(self._objects_dict)
         #leggo le connessioni dal DAO
         for c in connessioni:
-            self._grafo.add_edge(c.o1, c.o2)
+            self._grafo.add_edge(c.o1, c.o2, peso = c.peso)
+
+    def calcolaConnessa(self, id_nodo):
+        nodo_sorgente = self._objects_dict[id_nodo]
+        successori = nx.dfs_successors(self._grafo, nodo_sorgente)
+        print(f"Successori: {len(successori)}")
+
+        #Usando i predecessori
+        predecessori = nx.dfs_predecessors(self._grafo, nodo_sorgente)
+        print(f"Predecessori: {len(predecessori)}")
+
+        # Usando l'albero
+        tree = nx.dfs_tree(self._grafo, nodo_sorgente)
+        print(f"Albero: {len(tree.nodes)}")
+        return len(tree.nodes)
+
+
+
 

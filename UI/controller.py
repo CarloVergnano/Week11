@@ -15,5 +15,16 @@ class Controller:
         self._view.update_page()
 
     def handleCompConnessa(self,e):
-        pass
+        text_id = self._view._txtIdOggetto.value
+        try:
+            id = int(text_id)
+            print(id)
+            numNodi = self._model.calcolaConnessa(id)
+            self._view.txt_result.controls.clear()
+            self._view.txt_result.controls.append(ft.Text(f"Dim. componente connessa = {numNodi}"))
+            self._view.update_page()
+        except ValueError:
+            self._view.txt_result.controls.clear()
+            self._view.txt_result.controls.append(ft.Text(f"Inserisci un id valido"))
+            self._view.update_page()
 
